@@ -49,8 +49,124 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
 
+  var newBadge = renderLicenseBadge(data.license)
+  var section = renderLicenseSection(data.license)
+
+  if(data.description !== '') {
+
+    var desc = `
+    ## Description
+    ${data.description}`
+
+  } else {
+    desc = ``
+  }
+
+  if (data.installation !== '') {
+      var intallTOC = ` - [Installation](#Installation)<br>`
+      var intallation = `
+      ## Installation
+      ${data.installation}`
+
+  } else {
+    installation = ``
+    installTOC = ``
+  }
+
+  if (data.usage !== '') {
+    var usageTOC = ` - [Usage](#Usage)<br>`
+    var usage = `
+    ## Usage
+    ${data.usage}`
+
+  } else {
+    usage = ``
+    usageTOC = ``
+  }
+
+  if(data.contribution !== '') {
+    var contributionTOC = ` - [Contributing](#Contributing)<br>`
+    var contribution = `
+    ${data.contribution}`
+
+  } else {
+    contribution = ``
+    contributionTOC = ``
+  }
+
+
+  if (data.test !== '') {
+    var testTOC = ` - [Tests](#Tests)<br>`
+    var test = `
+    ## Tests
+    ${data.test}`
+
+  } else {
+    test = ``
+    testTOC = ``
+  }
+
+  if (data.license !== '') {
+    var licenseTOC = ` - [License](#License)<br>`
+    var section2 = `
+    ## License
+    ${section}`
+    
+  } else {
+    section = ``
+    licenseTOC = ``
+  }
+
+  if (data.username !== '' || data.email !== '') {
+    var questionTOC = ` - [Question](#Questions)`
+    var question = `
+    ## Questions
+    Github: [@${data.username}](www.github.com/${data.username}) <br>
+    Email: ${data.email}`
+    
+  } else {
+    question = ``
+    questionTOC =``
+  }
+
+  return `
+  # ${data.title}
+
+  ${newBadge}
+
+  ${desc}
+
+  ## Table of Contents
+
+  ${intallTOC}
+  ${usageTOC}
+  ${contributionTOC}
+  ${testTOC}
+  ${licenseTOC}
+  ${questionTOC}
+
+  ${installation}
+
+
+
+  ${usage}
+
+
+
+  ${contribution}
+
+
+
+  ${test}
+
+
+
+  ${section2}
+
+
+
+  ${question}
 `;
 }
 
